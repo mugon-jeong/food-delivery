@@ -3,37 +3,37 @@ import {Link} from "@nextui-org/link";
 
 const navItems = [
     {
-        title:"Home",
-        url:"/",
+        title: "Home",
+        url: "/",
     },
     {
-        title:"About us",
-        url:"/about",
+        title: "About us",
+        url: "/about",
     },
     {
-        title:"Restaurants",
-        url:"/restaurants",
+        title: "Restaurants",
+        url: "/restaurants",
     },
     {
-        title:"Polular Foods",
-        url:"/foods",
+        title: "Polular Foods",
+        url: "/foods",
     },
     {
-        title:"Contact us",
-        url:"/contact",
+        title: "Contact us",
+        url: "/contact",
     }
 ]
 
-const NavItems = ({activeItem}:{activeItem:number}) => {
+const NavItems = ({activeItem = 0}: { activeItem?: number }) => {
     return (
         <div>
             {
                 navItems.map((item, index) => (
                     <Link
-                    key={item.url}
-                    href={item.url}
-                    className={`px-5 text-[18px] font-Poppins font-[500]
-                    ${activeItem===index && "text-[#37b668]"}`}>
+                        key={item.url}
+                        href={item.url}
+                        className={`px-5 text-[18px] font-Poppins font-[500]
+                    ${activeItem === index && "text-[#37b668]"}`}>
                         {item.title}
                     </Link>
                 ))
