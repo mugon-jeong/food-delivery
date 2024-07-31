@@ -1,13 +1,29 @@
 "use client";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 import {Avatar} from "@nextui-org/avatar";
 import {CgProfile} from "react-icons/cg";
 import AuthScreen from "@/src/screens/AuthScreen";
+import useUser from '../hooks/useUser';
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 const ProfileDropDown = () => {
-    const[signedIn, setSignedIn]=useState(false);
+    const [signedIn, setSignedIn] = useState(false);
     const [open, setOpen] = useState(false);
+    const {user, loading} = useUser();
+    useEffect(() => {
+        if (!loading) {
+            setSignedIn(!!user);
+        }
+    }, [loading, user, open]);
+
+    const logoutHandler = () => {
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
+        toast.success("Log out successful!");
+        window.location.reload();
+    };
     return (
         <div className="flex items-center gap-4">
             {
@@ -15,9 +31,9 @@ const ProfileDropDown = () => {
                     <Dropdown placement={"bottom-end"}>
                         <DropdownTrigger>
                             <Avatar
-                                as={"button"}
-                                className={'transition-transform'}
-                                src={"https://avatars.githubusercontent.com/u/7221389?v=4"}
+                                as="button"
+                                className="transition-transform"
+                                src={user?.avatar?.url}
                             />
                         </DropdownTrigger>
                         <DropdownMenu aria-label={'Profile Action'} variant={'flat'}>
@@ -38,12 +54,16 @@ const ProfileDropDown = () => {
                             <DropdownItem key={'team_settings'}>
                                 Apply for seller account
                             </DropdownItem>
-                            <DropdownItem key={'logout'} color={'danger'}>
+                            <DropdownItem
+                                key="logout"
+                                color="danger"
+                                onClick={() => logoutHandler()}
+                            >
                                 Log Out
                             </DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
-                ):(
+                ) : (
                     <CgProfile
                         className="text-2xl cursor-pointer"
                         onClick={() => setOpen(!open)}
