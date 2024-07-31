@@ -9,6 +9,7 @@ import {useMutation} from "@apollo/client";
 import {LOGIN_USER} from "@/src/graphql/actions/login.action";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
+import {signIn, useSession} from "next-auth/react";
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -115,7 +116,7 @@ const Login = ({setActiveState, setOpen}: {
                     Or join with
                 </h5>
                 <div className="flex items-center justify-center my-3"
-                    // onClick={() => signIn()}
+                    onClick={() => signIn()}
                 >
                     <FcGoogle size={30} className="cursor-pointer mr-2"/>
                 </div>

@@ -12,10 +12,13 @@
     "@apollo/client": "^3.11.1",
     "@hookform/resolvers": "^3.9.0",
     "@nextui-org/react": "^2.4.6",
+    "@prisma/client": "^5.17.0",
+    "bcrypt": "^5.1.1",
     "framer-motion": "^11.3.18",
     "graphql": "^16.9.0",
     "js-cookie": "^3.0.5",
     "next": "14.2.5",
+    "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
@@ -25,6 +28,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -32,6 +36,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
+    "prisma": "^5.17.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
